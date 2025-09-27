@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import Banner from "../Components/Banner";
-import TicketCard from "../Components/TicketCard"
+import TicketCard from "../Components/TicketCard";
 import TaskStatus from "../components/TaskStatus";
 import ResolvedTask from "../Components/ResolvedTasks";
 import Container from "../components/Container";
 import Footer from "../components/Footer";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ticketsData = [
   {
@@ -132,27 +133,33 @@ const ticketsData = [
 ];
 
 const App = () => {
-  const [tickets, setTickets] = useState(ticketsData); 
+  const [tickets, setTickets] = useState(ticketsData);
   const [inProgress, setInProgress] = useState([]);
   const [resolved, setResolved] = useState([]);
 
-  //ticket to In Progress
+  // Move ticket to In Progress
   const handleAddToProgress = (ticket) => {
     if (!inProgress.find((t) => t.id === ticket.id)) {
       setInProgress([...inProgress, ticket]);
-      setTickets(tickets.filter((t) => t.id !== ticket.id)); 
-      alert(`"${ticket.title}" moved to In Progress`);
+      setTickets(tickets.filter((t) => t.id !== ticket.id));
+      toast.info(`"${ticket.title}" moved to In Progress`, {
+        position: "top-right",
+        autoClose: 2000,
+      });
     }
   };
 
-  //ticket as Resolved
+  // Mark ticket as Resolved
   const handleComplete = (ticketId) => {
     const ticket = inProgress.find((t) => t.id === ticketId);
 
     if (ticket) {
       setInProgress(inProgress.filter((t) => t.id !== ticketId));
-      setResolved([...resolved, ticket]); 
-      alert(`"${ticket.title}" marked as Resolved`);
+      setResolved([...resolved, ticket]);
+      toast.success(`"${ticket.title}" marked as Resolved`, {
+        position: "top-right",
+        autoClose: 2000,
+      });
     }
   };
 
@@ -178,7 +185,7 @@ const App = () => {
             ))}
           </div>
 
-          {/* Task Status + Resolved List*/}
+          {/* Task Status + Resolved List */}
           <div className="flex flex-col gap-6">
             <TaskStatus tasks={inProgress} onComplete={handleComplete} />
             <ResolvedTask resolved={resolved} />
@@ -188,6 +195,9 @@ const App = () => {
 
       {/* Footer */}
       <Footer />
+
+      {/* Toast Notification Container */}
+      <ToastContainer />
     </div>
   );
 };
