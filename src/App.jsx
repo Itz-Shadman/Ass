@@ -137,7 +137,7 @@ const App = () => {
   const [inProgress, setInProgress] = useState([]);
   const [resolved, setResolved] = useState([]);
 
-  // Move ticket to In Progress
+  //In Progress
   const handleAddToProgress = (ticket) => {
     if (!inProgress.find((t) => t.id === ticket.id)) {
       setInProgress([...inProgress, ticket]);
