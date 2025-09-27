@@ -178,7 +178,7 @@ const App = () => {
             ))}
           </div>
 
-          {/* Task Status + Resolved List (Right Section) */}
+          {/* Task Status + Resolved List*/}
           <div className="flex flex-col gap-6">
             <TaskStatus tasks={inProgress} onComplete={handleComplete} />
             <ResolvedTask resolved={resolved} />
