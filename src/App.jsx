@@ -7,7 +7,7 @@ import ResolvedTask from "../Components/ResolvedTasks";
 import Container from "../components/Container";
 import Footer from "../components/Footer";
 
-// Ticket JSON Data
+
 const ticketsData = [
   {
     id: "#1001",
