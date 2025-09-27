@@ -105,7 +105,7 @@ const ticketsData = [
     description:
       "Customer placed an order but didn't receive a confirmation email even though payment succeeded.",
     customer: "Isabella Garcia",
-    priority: "MEDIUM PRIORITY",
+    priority: "HIGH PRIORITY",
     status: "Open",
     createdAt: "1/24/2024",
   },
@@ -115,7 +115,7 @@ const ticketsData = [
     description:
       "Customer placed an order but didn't receive a confirmation email even though payment succeeded.",
     customer: "Isabella Garcia",
-    priority: "MEDIUM PRIORITY",
+    priority: "HIGH PRIORITY",
     status: "Open",
     createdAt: "1/25/2024",
   },
@@ -126,13 +126,13 @@ const ticketsData = [
       "Customer placed an order but didn't receive a confirmation email even though payment succeeded.",
     customer: "Isabella Garcia",
     priority: "MEDIUM PRIORITY",
-    status: "Open",
+    status: "In-Progress",
     createdAt: "1/26/2024",
   },
 ];
 
 const App = () => {
-  const [tickets, setTickets] = useState(ticketsData); // ✅ Tickets stateful
+  const [tickets, setTickets] = useState(ticketsData); 
   const [inProgress, setInProgress] = useState([]);
   const [resolved, setResolved] = useState([]);
 
@@ -140,7 +140,7 @@ const App = () => {
   const handleAddToProgress = (ticket) => {
     if (!inProgress.find((t) => t.id === ticket.id)) {
       setInProgress([...inProgress, ticket]);
-      setTickets(tickets.filter((t) => t.id !== ticket.id)); // remove from left list
+      setTickets(tickets.filter((t) => t.id !== ticket.id)); 
       alert(`"${ticket.title}" moved to In Progress`);
     }
   };
@@ -150,8 +150,8 @@ const App = () => {
     const ticket = inProgress.find((t) => t.id === ticketId);
 
     if (ticket) {
-      setInProgress(inProgress.filter((t) => t.id !== ticketId)); // remove from in progress
-      setResolved([...resolved, ticket]); // add to resolved
+      setInProgress(inProgress.filter((t) => t.id !== ticketId));
+      setResolved([...resolved, ticket]); 
       alert(`"${ticket.title}" marked as Resolved`);
     }
   };
