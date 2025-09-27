@@ -145,7 +145,7 @@ const App = () => {
     }
   };
 
-  // Mark ticket as Resolved
+  //ticket as Resolved
   const handleComplete = (ticketId) => {
     const ticket = inProgress.find((t) => t.id === ticketId);
 
